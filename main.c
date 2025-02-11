@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <time.h>
 
+
+/* Doðum tarihi ile girilen tarih arasýnda ne kadar fark olduðunu gösteren uygulama*/
+
+
 // Tarih ve saat bilgisi için struct
 struct tarihSaat {
     int gun;
@@ -42,7 +46,7 @@ void zamanFarkiniHesapla(time_t epoch1, time_t epoch2) {
     int ay = (fark_gun % 365) / 30; // Yaklaþýk hesap
     int gun = (fark_gun % 365) % 30;
     
-    printf("iki tarih arasindaki fark: %d yil, %d ay, %d gun, %d saat, %d dakika, %d saniye\n",
+    printf("Dogum tarihi ile girilen tarih arasindaki fark: %d yil, %d ay, %d gun, %d saat, %d dakika, %d saniye\n",
            yil, ay, gun, fark_saat % 24, fark_dakika % 60, fark_saniye % 60);
 }
 
@@ -50,12 +54,14 @@ int main() {
     union zaman z1, z2;
     time_t epoch1, epoch2;
     
+    printf("*Dogum Gununden itibaren Gecen Zamani Hesaplama Uygulamasi*\n\n");
+    
     // Ýlk tarih ve saat bilgisi
-    printf("Birinci tarih ve saat bilgisini giriniz (GG AA YYYY SS DD SS): ");
+    printf("Dogum tarihi ve saat bilgisini giriniz (GG AA YYYY SS DD SS): ");
     scanf("%d %d %d %d %d %d", &z1.t.gun, &z1.t.ay, &z1.t.yil, &z1.t.saat, &z1.t.dakika, &z1.t.saniye);
     
     // Ýkinci tarih ve saat bilgisi
-    printf("ikinci tarih ve saat bilgisini giriniz (GG AA YYYY SS DD SS): ");
+    printf("Arasinda ne kadar fark oldugunu bilmek istediginiz tarih ve saat bilgisini giriniz (GG AA YYYY SS DD SS): ");
     scanf("%d %d %d %d %d %d", &z2.t.gun, &z2.t.ay, &z2.t.yil, &z2.t.saat, &z2.t.dakika, &z2.t.saniye);
     
     // Epoch zamanlarýný hesapla
@@ -63,12 +69,13 @@ int main() {
     epoch2 = tarihToEpoch(z2.t);
     
     // Sonuçlarý ekrana yazdýr
-    printf("\nBirinci tarihin Epoch zamani: %ld\n", epoch1);
-    printf("ikinci tarihin Epoch zamani: %ld\n", epoch2);
-    printf("iki tarih arasindaki fark (saniye olarak): %ld saniye\n", (epoch2 - epoch1));
+    printf("\nDogum tarihinin Epoch zamani: %ld\n", epoch1);
+    printf("Arasindaki farkin bilinmek istendigi tarihin Epoch zamani: %ld\n", epoch2);
+    printf("Dogum tarihi ile girilen tarih arasindaki fark (saniye olarak): %ld saniye\n", (epoch2 - epoch1));
     
     // Ayrýntýlý zaman farkýný hesapla
     zamanFarkiniHesapla(epoch1, epoch2);
 
     return 0;
 }
+
